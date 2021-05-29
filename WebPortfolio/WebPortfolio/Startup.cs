@@ -37,6 +37,12 @@ namespace WebPortfolio
             })
                 .AddEntityFrameworkStores<AppDbContext>();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Auth/Login";
+
+            });
+
             //    services.AddIdentity<IdentityUser, IdentityRole>().AddUserStore<AppDbContext>();
             services.AddTransient<IRepository, Repository>();
 
