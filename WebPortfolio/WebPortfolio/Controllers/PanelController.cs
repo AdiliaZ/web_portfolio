@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebPortfolio.Data.Repository;
 using WebPortfolio.Models;
+using WebPortfolio.ViewModels;
 
 namespace WebPortfolio.Controllers
 {
@@ -30,18 +31,30 @@ namespace WebPortfolio.Controllers
         {
             if (id == null)
             {
-                return View(new Post());
+                return View(new PostViewModel());
             }
             else
             {
                 var post = _repo.GetPost((int)id);
-                return View(post);
+                return View(new PostViewModel
+                {
+                    Id = post.Id,
+                    Title = post.Title,
+                    Body = post.Body
+
+                });
             }
 
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Post post) //добавляем либо меняем пост
+        public async Task<IActionResult> Edit(PostViewModel vm) //добавляем либо меняем пост
         {
+            var post = new Post {
+                Id = vm.Id,
+                Title = vm.Title,
+                Body = vm.Body,
+                Image = "" 
+            };
             if (post.Id > 0)
                 _repo.UpdatePost(post);
             else

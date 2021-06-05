@@ -18,13 +18,14 @@ namespace WebPortfolio.Data.Repository
         public void AddPost(Post post)
         {
             _ctx.Posts.Add(post);
-            
+
         }
 
         public List<Post> GetAllPost()
         {
             return _ctx.Posts.ToList();
-        }
+       }
+       
 
         public Post GetPost(int id)
         {

@@ -24,7 +24,7 @@ namespace WebPortfolio.Controllers
         
         public IActionResult Index()
         {
-            var posts = _repo.GetAllPost();
+            List<Post> posts = _repo.GetAllPost();
             return View(posts);
         }
         public IActionResult Post(int id)
