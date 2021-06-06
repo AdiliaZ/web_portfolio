@@ -11,7 +11,7 @@ namespace WebPortfolio.Models
 
         public string Image { get; set; }
 
-        public DateTime Created { get; set; }
+        public DateTime Created { get; set; } = DateTime.Now;
 
         public Post()
         {

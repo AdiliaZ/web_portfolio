@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using WebPortfolio.Data.FileManager;
 using WebPortfolio.Data.Repository;
 using WebPortfolio.Models;
 using WebPortfolio.ViewModels;
@@ -15,10 +16,12 @@ namespace WebPortfolio.Controllers
     public class PanelController : Controller
     {
         private IRepository _repo;
+        private IFileManager _fileManager;
 
-        public PanelController(IRepository repo)
+        public PanelController(IRepository repo, IFileManager fileManager)
         {
             _repo = repo;
+            _fileManager = fileManager;
         }
         public IActionResult Index()
         {
@@ -53,7 +56,7 @@ namespace WebPortfolio.Controllers
                 Id = vm.Id,
                 Title = vm.Title,
                 Body = vm.Body,
-                Image = "" 
+                Image = await _fileManager.SaveImage(vm.Image)
             };
             if (post.Id > 0)
                 _repo.UpdatePost(post);

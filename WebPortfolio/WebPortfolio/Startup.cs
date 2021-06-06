@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebPortfolio.Data;
+using WebPortfolio.Data.FileManager;
 using WebPortfolio.Data.Repository;
 
 namespace WebPortfolio
@@ -45,6 +46,8 @@ namespace WebPortfolio
 
             //    services.AddIdentity<IdentityUser, IdentityRole>().AddUserStore<AppDbContext>();
             services.AddTransient<IRepository, Repository>();
+            services.AddTransient<IFileManager, FileManager>();
+
 
             services.AddControllersWithViews();
         }
